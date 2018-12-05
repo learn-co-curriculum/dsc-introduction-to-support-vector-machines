@@ -49,9 +49,9 @@ To get an idea of the margin maximization, let's take a closer look at the mathe
 Some terminology: The lines defined by the support vectors are the negative (to the left) and the positive (to the right) hyperplanes respectively.
 
 
-$$ w_o + w_Tx_{pos} =1$$
+$$ b + w_Tx_{pos} =1$$
 
-$$ w_0 + w_Tx_{neg} =-1$$
+$$ b + w_Tx_{neg} =-1$$
 
 $$ w_T(x_{pos}-x_{neg}) = 2$$
 
@@ -65,15 +65,15 @@ $$ \dfrac{w_T(x_{pos}-x_{neg})}{\lVert w \rVert} = \dfrac{2}{\lVert w \rVert}$$
 
 The objective of the SVM is then maximizing $\dfrac{2}{\lVert w \rVert}$ while constraining that the samples are classified correctly. Mathematically,
 
-$ w_o + w_Tx^{(i)} \geq 1$  if $y ^{(i)} = 1$
+$ b + w_Tx^{(i)} \geq 1$  if $y ^{(i)} = 1$
 
-$ w_o + w_Tx^{(i)} \geq -1$  if $y ^{(i)} = -1$
+$ b + w_Tx^{(i)} \leq -1$  if $y ^{(i)} = -1$
 
 For $i= 1,\ldots ,N$
 
 These equations basically say that all negative samples should fall on on the left side of the negative hyperplane, whereas all the positive samples should fall on the right of the positive hyperplane. This can also be written in one line as follows:
 
-$y ^{(i)} (w_o + w_Tx^{(i)} )\geq 1$  for each $i$
+$y ^{(i)} (b + w_Tx^{(i)} )\geq 1$  for each $i$
 
 Note that maximizing $\dfrac{2}{\lVert w \rVert}$ means we're minimizing $\lVert w \rVert$, or, as is done in practice because it seems to be easier to be minimized, $\dfrac{1}{2}\lVert w \rVert^2$.
 
@@ -82,9 +82,9 @@ Note that maximizing $\dfrac{2}{\lVert w \rVert}$ means we're minimizing $\lVert
 Introducing slack variables $\xi$. The idea for introducing slack variables is that the linear constraints need to be relaxed for data that are not linearly saparable, as not relaxing the constraints might lead to the algorithm that doesn't converge. 
 
 
-$ w_o + w_Tx^{(i)} \geq 1-\xi^{(i)}$  if $y ^{(i)} = 1$
+$ b + w_Tx^{(i)} \geq 1-\xi^{(i)}$  if $y ^{(i)} = 1$
 
-$ w_o + w_Tx^{(i)} \geq -1+\xi^{(i)}$  if $y ^{(i)} = -1$
+$ b + w_Tx^{(i)} \leq -1+\xi^{(i)}$  if $y ^{(i)} = -1$
 
 For $i= 1,\ldots ,N$
 
