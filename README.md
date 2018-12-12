@@ -40,7 +40,7 @@ The margin is defined as the distance between the separating line (hyperplane) a
 
 ## The Max Margin Classifier
 
-Why would you bother maximizing the margins? Don't these other hyperplanes discriminate equally well? Remember that you are fitting the hyperplane on your training data. Imagine you start looking at your test data, which will slightly differ from your training data.
+Why would you bother maximizing the margins? Don't these other hyperplanes discriminate just as well? Remember that you are fitting the hyperplane on your training data. Imagine you start looking at your test data, which will slightly differ from your training data.
 
 Assuming your test set is big enough and randomly drawn from your entire data set, you might end up with a test case as shown on the image below. This test case diverts a little bit from the training set cases observed earlier. Where the max margin classifier would classify this test set case correctly, if you would have chosen the hyperplane closer to the right, this test case would have been classified incorrectly. Of course this is just one example, and other test cases will end up in a different spot, but the purpose of chosing the max margin classifier is to minimize the generalization error when applying the model to test set data.
 
