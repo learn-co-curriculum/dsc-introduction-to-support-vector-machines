@@ -3,7 +3,7 @@
 
 ## Introduction
 
-By now you've learned a few techniques for classification: you touched upon it when talking about naive bayes, and again when you saw some supervised learning techniques such as logistic regression and decision trees. Now it's time for another fast and popular classification technique: Support Vector Machines.
+By now you've learned a few techniques for classification; you touched upon it when talking about Naive Bayes, and again when you saw some supervised learning techniques such as logistic regression and decision trees. Now it's time for another popular classification technique&mdash;Support Vector Machines.
 
 ## Objectives
 
@@ -30,11 +30,11 @@ This would be a good line.
 
 ![title](images/SVM_2.png)
 
-But these other ones too... How to chose the best one? Either one of these three lines (or, using generalized language "hyperplanes") does equally well at classifying. Rather then solely focus on the final accuracy of the model, SVM's aim to **maximize the margin** between the decision boundary the various data points.
+While this seems intuitive, there are other decision boundaries which also separate the classes. Which one is best? Rather then solely focus on the final accuracy of the model, Support Vector Machines aim to **maximize the margin** between the decision boundary and the various data points.
 
 ![title](images/SVM_4.png)
 
-The margin is defined as the distance between the separating line (hyperplane) and the training set cases that are closest to this hyperplane, which are the so-called "support vectors". The suport vectors in this particular case are highlighted in the image below. As you can see, the max margin hyperplane is right in the middle between the two lines defined by the support vectors.
+The margin is defined as the distance between the separating line (hyperplane) and the training set cases that are closest to this hyperplane. These edges cases define the "support vectors". The suport vectors in this particular case are highlighted in the image below. As you can see, the max margin hyperplane is the midpoint between the two lines defined by the support vectors.
 
 ![title](images/SVM_fin.png)
 
@@ -42,11 +42,11 @@ The margin is defined as the distance between the separating line (hyperplane) a
 
 Why would you bother maximizing the margins? Don't these other hyperplanes discriminate just as well? Remember that you are fitting the hyperplane on your training data. Imagine you start looking at your test data, which will slightly differ from your training data.
 
-Assuming your test set is big enough and randomly drawn from your entire data set, you might end up with a test case as shown on the image below. This test case diverts a little bit from the training set cases observed earlier. Where the max margin classifier would classify this test set case correctly, if you would have chosen the hyperplane closer to the right, this test case would have been classified incorrectly. Of course this is just one example, and other test cases will end up in a different spot, but the purpose of chosing the max margin classifier is to minimize the generalization error when applying the model to test set data.
+Assuming your test set is big enough and randomly drawn from your entire data set, you might end up with a test case as shown on the image below. This test case diverts a little bit from the training set cases observed earlier. While the max margin classifier would classify this test set case correctly, the hyperplane closer to the right would have been classified incorrectly. Of course this is just one example, and other test cases will end up in a different spots. Nonetheless, the purpose of choosing the max margin classifier is to minimize the generalization error when applying the model to future unseen data points.
 
 ![title](images/SVM_test2.png)
 
-To get an idea of the margin maximization, let's take a closer look at the mathematical formulation of the hyperplanes defined by the support vectors. Let's look at the image again:
+Before diving into the underlying mathematics, take a look at the image again:
 
 ![title](images/SVM_fin.png)
 
