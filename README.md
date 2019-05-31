@@ -20,23 +20,23 @@ The idea behind Support Vector Machines (also referred to as SVMs) is that we pe
 
 Imagine we have a data set containing 2 classes (denoted by blue dots and and 2 features.
 
-![title](SVM_1.png)
+![title](images/SVM_1.png)
 
 We want to find a hyperplane or "decision boundary" that divides one class from the other. Which one works best?
 
-![title](SVM_3.png)
+![title](images/SVM_3.png)
 
 This would be a good line.
 
-![title](SVM_2.png)
+![title](images/SVM_2.png)
 
 But these other ones too... How to chose the best one? Either one of these three lines (or, using generalized language "hyperplanes") does equally well at classifying. The optimization objective in SVMs however is to **maximize the margin**. So what does this mean?
 
-![title](SVM_4.png)
+![title](images/SVM_4.png)
 
 The margin is defined as the distance between the separating line (hyperplane) and the training set cases that are closest to this hyperplane, which are the so-called "support vectors". The suport vectors in this particular case are highlighted in the image below. As you can see, the max margin hyperplane is right in the middle between the two lines defined by the support vectors.
 
-![title](SVM_fin.png)
+![title](images/SVM_fin.png)
 
 ## The Max Margin Classifier
 
@@ -44,11 +44,11 @@ Why would you bother maximizing the margins? Don't these other hyperplanes discr
 
 Assuming your test set is big enough and randomly drawn from your entire data set, you might end up with a test case as shown on the image below. This test case diverts a little bit from the training set cases observed earlier. Where the max margin classifier would classify this test set case correctly, if you would have chosen the hyperplane closer to the right, this test case would have been classified incorrectly. Of course this is just one example, and other test cases will end up in a different spot, but the purpose of chosing the max margin classifier is to minimize the generalization error when applying the model to test set data.
 
-![title](SVM_test2.png)
+![title](images/SVM_test2.png)
 
 To get an idea of the margin maximization, let's take a closer look at the mathematical formulation of the hyperplanes defined by the support vectors. Let's look at the image again:
 
-![title](SVM_fin.png)
+![title](images/SVM_fin.png)
 
 Some terminology: The lines defined by the support vectors are the negative (to the left) and the positive (to the right) hyperplanes respectively.
 
@@ -102,7 +102,7 @@ You're basically adding these slack variables in your objective function, making
 - A big value for C will lead to the picture on the left: Misclassifications are heavily punished, so we'll prioritize classifying correctly over having a big margin.
 - A small value for C will lead to the picture on the right: it is OK to have some misclassifications, we'd rather have a bigger margin overall. 
 
-![title](SVM_C.png)
+![title](images/SVM_C.png)
 
 ## Summary 
 
