@@ -3,7 +3,7 @@
 
 ## Introduction
 
-By now you've learned a few techniques for classification: you touched upon it when talking about naive bayes, next we saw some supervised learning techniques such as logistic regression and decision trees. Now it's time for another fast and popular classification technique: Support Vector Machines.
+By now you've learned a few techniques for classification: you touched upon it when talking about naive bayes, and again when you saw some supervised learning techniques such as logistic regression and decision trees. Now it's time for another fast and popular classification technique: Support Vector Machines.
 
 ## Objectives
 
@@ -16,13 +16,13 @@ You will be able to:
 
 ## The idea
 
-The idea behind Support Vector Machines (also referred to as SVMs) is that we perform classification by finding the seperation line or (in higher dimensions) "hyperplane" that best differates between two classes. Because we're talking about lines and hyperplanes, it's always easiest to explain this idea by looking at a visual example.
+The idea behind Support Vector Machines (also referred to as SVMs) is that you perform classification by finding the separation line or (in higher dimensions) "hyperplane" that maximizes the distance between two classes. With this, taking a look at the concept visually helps make sense of the process.
 
-Imagine we have a data set containing 2 classes (denoted by blue dots and and 2 features.
+Imagine you have a data set containing 2 classes:
 
 ![title](images/SVM_1.png)
 
-We want to find a hyperplane or "decision boundary" that divides one class from the other. Which one works best?
+In SVM, you want to find a hyperplane or "decision boundary" that divides one class from the other. Which one works best?
 
 ![title](images/SVM_3.png)
 
@@ -30,7 +30,7 @@ This would be a good line.
 
 ![title](images/SVM_2.png)
 
-But these other ones too... How to chose the best one? Either one of these three lines (or, using generalized language "hyperplanes") does equally well at classifying. The optimization objective in SVMs however is to **maximize the margin**. So what does this mean?
+But these other ones too... How to chose the best one? Either one of these three lines (or, using generalized language "hyperplanes") does equally well at classifying. Rather then solely focus on the final accuracy of the model, SVM's aim to **maximize the margin** between the decision boundary the various data points.
 
 ![title](images/SVM_4.png)
 
@@ -63,7 +63,7 @@ If you want to normalize it by the length of the vector $||w||$:
 
 $$ || w ||= \sqrt{\sum^m_{j-1}w_j^2} $$
 
-Then, divide the former expression by $||w||$. The left side of resulting equation can be interpreted as the distance between the positive and negative hyperplane. This is the **margin** we want to maximize.
+Then, divide the former expression by $||w||$. The left side of resulting equation can be interpreted as the distance between the positive and negative hyperplane. This is the **margin** you're trying to maximize.
 
 $$ \dfrac{w_T(x_{pos}-x_{neg})}{\lVert w \rVert} = \dfrac{2}{\lVert w \rVert}$$
 
@@ -99,11 +99,11 @@ The objective function is
 
 You're basically adding these slack variables in your objective function, making clear that you want to minimize the amount of slack you allow for. You can tune this with the C variable as well. C will define how much slack we're allowing.
 
-- A big value for C will lead to the picture on the left: Misclassifications are heavily punished, so we'll prioritize classifying correctly over having a big margin.
-- A small value for C will lead to the picture on the right: it is OK to have some misclassifications, we'd rather have a bigger margin overall. 
+- A big value for C will lead to the picture on the left: Misclassifications are heavily punished, so the optimization prioritizes classifying correctly over having a big margin.
+- A small value for C will lead to the picture on the right: it is OK to have some misclassifications, in order to gain a bigger margin overall. (This can help avoid overfitting to the training data.)
 
 ![title](images/SVM_C.png)
 
 ## Summary 
 
-Great! You now understand what Max Margin Classifiers are as well as Soft Margin Classifiers. In the next lab, we'll try to code these fairly straightforward linear classifiers from scratch!
+Great! You now understand what Max Margin Classifiers are as well as Soft Margin Classifiers. In the next lab, you'll try to code these fairly straightforward linear classifiers from scratch!
