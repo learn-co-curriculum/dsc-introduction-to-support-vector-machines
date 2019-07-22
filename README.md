@@ -50,20 +50,29 @@ Before diving into the underlying mathematics, take a look at the image again:
 
 <img src="images/new_SVM_fin.png" width="400">
 
-Some terminology: The lines defined by the support vectors are the negative (to the left) and the positive (to the right) hyperplanes respectively.
+Let's define some numeric labels for our classes. Let the circles be -1 and the diamonds be 1. Normally, we would choose 0 and 1 for our class labels but in this particular case using -1 and 1 simiplifies the mathematics.  
 
+Now some terminology: The lines defined by the support vectors are the negative (to the left) and the positive (to the right) hyperplanes, respectively. These hyperplanes are defined by two terms: $w_T$ and $b$. 
 
+$w_T$ is called the **weight vector** which contains the weights that are used in the classification.
+
+$b$ is called the **bias** which functions as an offset term. If there were no bias term, the hyperplane would always go through the origin which would not be very generalizable! 
+
+The equation describing the positive hyperplane is:
 $$ b + w_Tx_{pos} =1$$
 
+and the equation describing the negative hyperplane is:
 $$ b + w_Tx_{neg} =-1$$
+
+We want to maxmize the difference, $(x_{pos}-x_{neg})$. To do this we first subtract the negative hyperplane's equation from the positive hyperplane's equation:
 
 $$ w_T(x_{pos}-x_{neg}) = 2$$
 
-If you want to normalize it by the length of the vector $||w||$:
+Next, we normalize $w_T$ by dividing both sides of the equation by its norm, $||w||$:
 
 $$ || w ||= \sqrt{\sum^m_{j-1}w_j^2} $$
 
-Then, divide the former expression by $||w||$. The left side of resulting equation can be interpreted as the distance between the positive and negative hyperplane. This is the **margin** you're trying to maximize.
+Dividing the former expression by $||w||$ yields the equation below. The left side of resulting equation can be interpreted as the distance between the positive and negative hyperplane. This is the **margin** you're trying to maximize.
 
 $$ \dfrac{w_T(x_{pos}-x_{neg})}{\lVert w \rVert} = \dfrac{2}{\lVert w \rVert}$$
 
