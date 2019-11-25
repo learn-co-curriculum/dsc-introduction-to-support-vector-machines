@@ -3,22 +3,22 @@
 
 ## Introduction
 
-By now you've learned a few techniques for classification; you touched upon it when talking about Naive Bayes, and again when you saw some supervised learning techniques such as logistic regression and decision trees. Now it's time for another popular classification technique&mdash;Support Vector Machines.
+By now you've learned a few techniques for classification; you touched upon it when talking about Naive Bayes, and again when you saw some supervised learning techniques such as logistic regression and decision trees. Now it's time for another popular classification technique -- Support Vector Machines.
 
 ## Objectives
 
 You will be able to:
 
-- Understand what a Support Vector Machine is
-- Understand the mathematical formulation of a simple max-margin classifier
-- Understand the mathematical formulation of a simple soft-margin classifier
+- Describe what is meant by margin classifiers 
+- Describe the mathematical components underlying soft and max-margin classifiers 
+- Compare and contrast max-margin classifiers and soft-margin classifiers 
 
 
 ## The idea
 
 The idea behind Support Vector Machines (also referred to as SVMs) is that you perform classification by finding the separation line or (in higher dimensions) "hyperplane" that maximizes the distance between two classes. With this, taking a look at the concept visually helps make sense of the process.
 
-Imagine you have a data set containing 2 classes:
+Imagine you have a dataset containing two classes:
 
 <img src="images/new_SVM_1.png" width="400">
 
@@ -26,23 +26,23 @@ In SVM, you want to find a hyperplane or "decision boundary" that divides one cl
 
 <img src="images/new_SVM_3.png" width="400">
 
-This would be a good line.
+This would be a good line: 
 
 <img src="images/new_SVM_2.png" width="400">
 
-While this seems intuitive, there are other decision boundaries which also separate the classes. Which one is best? Rather then solely focus on the final accuracy of the model, Support Vector Machines aim to **maximize the margin** between the decision boundary and the various data points.
+While this seems intuitive, there are other decision boundaries which also separate the classes. Which one is best? Rather than solely focus on the final accuracy of the model, Support Vector Machines aim to **maximize the margin** between the decision boundary and the various data points.
 
 <img src="images/new_SVM_4.png" width="400">
 
-The margin is defined as the distance between the separating line (hyperplane) and the training set cases that are closest to this hyperplane. These edges cases define the "support vectors". The suport vectors in this particular case are highlighted in the image below. As you can see, the max margin hyperplane is the midpoint between the two lines defined by the support vectors.
+The margin is defined as the distance between the separating line (hyperplane) and the training set cases that are closest to this hyperplane. These cases define the "support vectors". The suport vectors in this particular case are highlighted in the image below. As you can see, the max margin hyperplane is the midpoint between the two lines defined by the support vectors.
 
 <img src="images/new_SVM_fin.png" width="400">
 
-## The Max Margin Classifier
+## The Max Margin classifier
 
 Why would you bother maximizing the margins? Don't these other hyperplanes discriminate just as well? Remember that you are fitting the hyperplane on your training data. Imagine you start looking at your test data, which will slightly differ from your training data.
 
-Assuming your test set is big enough and randomly drawn from your entire data set, you might end up with a test case as shown on the image below. This test case diverts a little bit from the training set cases observed earlier. While the max margin classifier would classify this test set case correctly, the hyperplane closer to the right would have been classified incorrectly. Of course this is just one example, and other test cases will end up in a different spots. Nonetheless, the purpose of choosing the max margin classifier is to minimize the generalization error when applying the model to future unseen data points.
+Assuming your test set is big enough and randomly drawn from your entire dataset, you might end up with a test case as shown in the image below. This test case diverts a little bit from the training set cases observed earlier. While the max margin classifier would classify this test set case correctly, the hyperplane closer to the right would have been classified this case incorrectly. Of course this is just one example, and other test cases will end up in different spots. Nonetheless, the purpose of choosing the max margin classifier is to minimize the generalization error when applying the model to future unseen data points.
 
 <img src="images/new_SVM_test2.png" width="400">
 
@@ -72,7 +72,7 @@ Next, normalize $w_T$ by dividing both sides of the equation by its norm, $||w||
 
 $$ || w ||= \sqrt{\sum^m_{j-1}w_j^2} $$
 
-Dividing the former expression by $||w||$ yields the equation below. The left side of the resulting equation can be interpreted as the distance between the positive and negative hyperplane. This is the **margin** you're trying to maximize.
+Dividing the former expression by $||w||$ yields the equation below. The left side of the resulting equation can be interpreted as the distance between the positive and negative hyperplanes. This is the **margin** you're trying to maximize.
 
 $$ \dfrac{w_T(x_{pos}-x_{neg})}{\lVert w \rVert} = \dfrac{2}{\lVert w \rVert}$$
 
@@ -90,7 +90,7 @@ $y ^{(i)} (b + w_Tx^{(i)} )\geq 1$  for each $i$
 
 Note that maximizing $\dfrac{2}{\lVert w \rVert}$ means we're minimizing $\lVert w \rVert$, or, as is done in practice because it seems to be easier to be minimized, $\dfrac{1}{2}\lVert w \rVert^2$.
 
-## The Soft Margin Classifier
+## The Soft Margin classifier
 
 Introducing slack variables $\xi$. The idea for introducing slack variables is that the linear constraints need to be relaxed for data that are not linearly saparable, as not relaxing the constraints might lead to the algorithm that doesn't converge. 
 
@@ -106,13 +106,13 @@ The objective function is
 
  $$\dfrac{1}{2}\lVert w \rVert^2+ C(\sum_i \xi^{(i)})$$
 
-You're basically adding these slack variables in your objective function, making clear that you want to minimize the amount of slack you allow for. You can tune this with the C variable as well. C will define how much slack we're allowing.
+You're basically adding these slack variables in your objective function, making clear that you want to minimize the amount of slack you allow for. You can tune this with $C$ as shown in the above equation. $C$ will define how much slack we're allowing.
 
-- A big value for C will lead to the picture on the left: Misclassifications are heavily punished, so the optimization prioritizes classifying correctly over having a big margin.
-- A small value for C will lead to the picture on the right: it is OK to have some misclassifications, in order to gain a bigger margin overall. (This can help avoid overfitting to the training data.)
+- A big value for $C$ will lead to the picture on the left: misclassifications are heavily punished, so the optimization prioritizes classifying correctly over having a big margin.
+- A small value for $C$ will lead to the picture on the right: it is OK to have some misclassifications, in order to gain a bigger margin overall. (This can help avoid overfitting to the training data.)
 
 <img src="images/new_SVM_C.png">
 
 ## Summary 
 
-Great! You now understand what Max Margin Classifiers are as well as Soft Margin Classifiers. In the next lab, you'll try to code these fairly straightforward linear classifiers from scratch!
+Great! You now understand both Max Margin classifiers as well as Soft Margin classifiers. In the next lab, you'll try to code these fairly straightforward linear classifiers from scratch!
