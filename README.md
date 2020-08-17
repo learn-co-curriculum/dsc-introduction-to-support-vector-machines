@@ -52,64 +52,64 @@ Before diving into the underlying mathematics, take a look at the image again:
 
 Now you can start exploring the mathematics behind the image. First, define some numeric labels for the two classes. Set the circles to be -1 and the diamonds to be 1. Normally, 0 and 1 are used for class labels but in this particular case using -1 and 1 simplifies the mathematics.  
 
-Now some terminology: The lines defined by the support vectors are the negative (to the left) and the positive (to the right) hyperplanes, respectively. These hyperplanes are defined by two terms: $w_T$ and $b$. 
+Now some terminology: The lines defined by the support vectors are the negative (to the left) and the positive (to the right) hyperplanes, respectively. These hyperplanes are defined by two terms:  <img src="https://render.githubusercontent.com/render/math?math=w_T"> and  <img src="https://render.githubusercontent.com/render/math?math=b"> . 
 
-The $w_T$ term is called the **weight vector** and contains the weights that are used in the classification.
+The  <img src="https://render.githubusercontent.com/render/math?math=w_T"> term is called the **weight vector** and contains the weights that are used in the classification.
 
-The $b$ term is called the **bias** and functions as an offset term. If there were no bias term, the hyperplane would always go through the origin which would not be very generalizable! 
+The  <img src="https://render.githubusercontent.com/render/math?math=b"> term is called the **bias** and functions as an offset term. If there were no bias term, the hyperplane would always go through the origin which would not be very generalizable! 
 
 The equation describing the positive hyperplane is:
-$$ b + w_Tx_{pos} =1$$
+ <img src="https://render.githubusercontent.com/render/math?math=b %2b w_Tx_{pos} =1"> 
 
 and the equation describing the negative hyperplane is:
-$$ b + w_Tx_{neg} =-1$$
+ <img src="https://render.githubusercontent.com/render/math?math=b %2b w_Tx_{neg} =-1"> 
 
 Remember, your goal is to maximize the separation between the two hyperplanes. To do this, first subtract the negative hyperplane's equation from the positive hyperplane's equation:
 
-$$ w_T(x_{pos}-x_{neg}) = 2$$
+ <img src="https://render.githubusercontent.com/render/math?math=w_T(x_{pos}-x_{neg}) = 2"> 
 
-Next, normalize $w_T$ by dividing both sides of the equation by its norm, $||w||$:
+Next, normalize  <img src="https://render.githubusercontent.com/render/math?math=w_T"> by dividing both sides of the equation by its norm,  <img src="https://render.githubusercontent.com/render/math?math=||w||"> :
 
-$$ || w ||= \sqrt{\sum^m_{j-1}w_j^2} $$
+ <img src="https://render.githubusercontent.com/render/math?math=|| w ||= \sqrt{\sum^m_{j-1}w_j^2} "> 
 
-Dividing the former expression by $||w||$ yields the equation below. The left side of the resulting equation can be interpreted as the distance between the positive and negative hyperplanes. This is the **margin** you're trying to maximize.
+Dividing the former expression by  <img src="https://render.githubusercontent.com/render/math?math=||w||"> yields the equation below. The left side of the resulting equation can be interpreted as the distance between the positive and negative hyperplanes. This is the **margin** you're trying to maximize.
 
-$$ \dfrac{w_T(x_{pos}-x_{neg})}{\lVert w \rVert} = \dfrac{2}{\lVert w \rVert}$$
+ <img src="https://render.githubusercontent.com/render/math?math=\dfrac{w_T(x_{pos}-x_{neg})}{\lVert w \rVert} = \dfrac{2}{\lVert w \rVert}"> 
 
-The objective of the SVM is then maximizing $\dfrac{2}{\lVert w \rVert}$ under the constraint that the samples are classified correctly. Mathematically,
+The objective of the SVM is then maximizing  <img src="https://render.githubusercontent.com/render/math?math=\dfrac{2}{\lVert w \rVert}"> under the constraint that the samples are classified correctly. Mathematically,
 
-$ b + w_Tx^{(i)} \geq 1$  if $y ^{(i)} = 1$
+ <img src="https://render.githubusercontent.com/render/math?math=b %2b w_Tx^{(i)} \geq 1">  if  <img src="https://render.githubusercontent.com/render/math?math=y ^{(i)} = 1"> 
 
-$ b + w_Tx^{(i)} \leq -1$  if $y ^{(i)} = -1$
+ <img src="https://render.githubusercontent.com/render/math?math=b %2b w_Tx^{(i)} \leq -1">  if  <img src="https://render.githubusercontent.com/render/math?math=y ^{(i)} = -1"> 
 
-For $i= 1,\ldots ,N$
+For  <img src="https://render.githubusercontent.com/render/math?math=i= 1,\ldots ,N"> 
 
 These equations basically say that all negative samples should fall on the left side of the negative hyperplane, whereas all the positive samples should fall on the right of the positive hyperplane. This can also be written in one line as follows:
 
-$y ^{(i)} (b + w_Tx^{(i)} )\geq 1$  for each $i$
+ <img src="https://render.githubusercontent.com/render/math?math=y ^{(i)} (b %2b w_Tx^{(i)} )\geq 1">  for each  <img src="https://render.githubusercontent.com/render/math?math=i"> 
 
-Note that maximizing $\dfrac{2}{\lVert w \rVert}$ means we're minimizing $\lVert w \rVert$, or, as is done in practice because it seems to be easier to be minimized, $\dfrac{1}{2}\lVert w \rVert^2$.
+Note that maximizing  <img src="https://render.githubusercontent.com/render/math?math=\dfrac{2}{\lVert w \rVert}"> means we're minimizing  <img src="https://render.githubusercontent.com/render/math?math=\lVert w \rVert"> , or, as is done in practice because it seems to be easier to be minimized,  <img src="https://render.githubusercontent.com/render/math?math=\dfrac{1}{2}\lVert w \rVert^2"> .
 
 ## The Soft Margin classifier
 
-Introducing slack variables $\xi$. The idea for introducing slack variables is that the linear constraints need to be relaxed for data that are not linearly separable, as not relaxing the constraints might lead to the algorithm that doesn't converge. 
+Introducing slack variables  <img src="https://render.githubusercontent.com/render/math?math=\xi"> . The idea for introducing slack variables is that the linear constraints need to be relaxed for data that are not linearly separable, as not relaxing the constraints might lead to the algorithm that doesn't converge. 
 
 
-$ b + w_Tx^{(i)} \geq 1-\xi^{(i)}$  if $y ^{(i)} = 1$
+ <img src="https://render.githubusercontent.com/render/math?math=b %2b w_Tx^{(i)} \geq 1-\xi^{(i)}">  if  <img src="https://render.githubusercontent.com/render/math?math=y ^{(i)} = 1"> 
 
-$ b + w_Tx^{(i)} \leq -1+\xi^{(i)}$  if $y ^{(i)} = -1$
+ <img src="https://render.githubusercontent.com/render/math?math=b %2b w_Tx^{(i)} \leq -1%2b\xi^{(i)}">  if  <img src="https://render.githubusercontent.com/render/math?math=y ^{(i)} = -1"> 
 
-For $i= 1,\ldots ,N$
+For  <img src="https://render.githubusercontent.com/render/math?math=i= 1,\ldots ,N"> 
 
 
 The objective function (AKA the function you want to minimize) is 
 
- $$\dfrac{1}{2}\lVert w \rVert^2+ C(\sum_i \xi^{(i)})$$
+  <img src="https://render.githubusercontent.com/render/math?math=\dfrac{1}{2}\lVert w \rVert^2%2b C(\sum_i \xi^{(i)})"> 
 
-You're basically adding these slack variables in your objective function, making clear that you want to minimize the amount of slack you allow for. You can tune this with $C$ as shown in the above equation. $C$ will define how much slack we're allowing.
+You're basically adding these slack variables in your objective function, making clear that you want to minimize the amount of slack you allow for. You can tune this with  <img src="https://render.githubusercontent.com/render/math?math=C"> as shown in the above equation.  <img src="https://render.githubusercontent.com/render/math?math=C"> will define how much slack we're allowing.
 
-- A big value for $C$ will lead to the picture on the left: misclassifications are heavily punished, so the optimization prioritizes classifying correctly over having a big margin.
-- A small value for $C$ will lead to the picture on the right: it is OK to have some misclassifications, in order to gain a bigger margin overall. (This can help avoid overfitting to the training data.)
+- A big value for  <img src="https://render.githubusercontent.com/render/math?math=C"> will lead to the picture on the left: misclassifications are heavily punished, so the optimization prioritizes classifying correctly over having a big margin.
+- A small value for  <img src="https://render.githubusercontent.com/render/math?math=C"> will lead to the picture on the right: it is OK to have some misclassifications, in order to gain a bigger margin overall. (This can help avoid overfitting to the training data.)
 
 <img src="images/new_SVM_C.png">
 
